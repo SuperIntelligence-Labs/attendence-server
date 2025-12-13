@@ -23,22 +23,25 @@ function performAction(
 }
 
 // --- Example Usage ---
+// Call runExample() to execute the example
 
-const actionResult = performAction("deleteNonExistent", false);
+export function runExample(): void {
+    const actionResult = performAction("deleteNonExistent", false);
 
-// Handle the result and check error types
-actionResult.match(
-    (successMessage) => {
-        // Success case
-        logger.info(`✅ Success: ${successMessage}`);
-    },
-    (error) => {
-        // Error case - check type of error
-        if (error instanceof UnauthorizedError) {
-            logger.error(`🚫 Unauthorized Error: ${error.message}`);
-            // Additional handling for unauthorized errors can go here
-        } else {
-            logger.error(`⚠️ Not Found Error: ${error.message}`);
+    // Handle the result and check error types
+    actionResult.match(
+        (successMessage) => {
+            // Success case
+            logger.info(`Success: ${successMessage}`);
+        },
+        (error) => {
+            // Error case - check type of error
+            if (error instanceof UnauthorizedError) {
+                logger.error(`Unauthorized Error: ${error.message}`);
+                // Additional handling for unauthorized errors can go here
+            } else {
+                logger.error(`Not Found Error: ${error.message}`);
+            }
         }
-    }
-);
+    );
+}

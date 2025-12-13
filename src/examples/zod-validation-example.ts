@@ -32,5 +32,9 @@ async function fetchUser(userId: number): Promise<User | null> {
 }
 
 // --- Example usage ---
-const data = await fetchUser(1);
-logger.info("User fetched successfully:", data?.name);
+// Call runExample() to execute the example
+
+export async function runExample(): Promise<void> {
+    const data = await fetchUser(1);
+    logger.info("User fetched successfully:", data?.name);
+}
