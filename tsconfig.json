@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    // Environment setup
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ESNext"],
+    "inlineSourceMap": true,
+
+    // JSX / Hono support
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx",
+
+    // Strict type safety
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    // Optional strictness for unused code
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "noPropertyAccessFromIndexSignature": true,
+
+    // JS interop
+    "allowJs": true,
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+
+    // Skip type check in node_modules to speed up builds
+    "skipLibCheck": true,
+
+    // Prevent emission if there are type errors
+    "noEmitOnError": true,
+    "noEmit": true,
+
+    // Module detection (always treat files as modules)
+    "moduleDetection": "force"
+  }
+}
