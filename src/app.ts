@@ -31,7 +31,7 @@ app.use("*", logger());
 //         }
 //     }
 //
-//     c.set("token", c.req.header("x-wasc")!);
+//     c.set("token", c.req.header("x-token")!);
 //     await next();
 // });
 
