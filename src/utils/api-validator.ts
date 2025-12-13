@@ -4,7 +4,11 @@ import {
     BadRequestError,
     ForbiddenError,
     NotFoundError,
-    UnauthorizedError, InternalServerError, ServiceUnavailableError, TimeoutError
+    UnauthorizedError,
+    InternalServerError,
+    ServiceUnavailableError,
+    TimeoutError,
+    GatewayTimeoutError,
 } from "./error/errors.ts";
 import logger from "./logger.ts";
 
@@ -30,7 +34,7 @@ function validateApiError(
         case 503:
             return err(new ServiceUnavailableError("Service is temporarily unavailable"));
         case 504:
-            return err(new TimeoutError("Gateway timed out while processing the request"));
+            return err(new GatewayTimeoutError("Gateway timed out while processing the request"));
         default:
             return err(
                 new InternalServerError(

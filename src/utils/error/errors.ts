@@ -39,7 +39,13 @@ export class ConflictError extends AppError {
 
 export class TimeoutError extends AppError {
     constructor(details?: string) {
-        super("CONNECTION_TIMEOUT", details);
+        super("REQUEST_TIMEOUT", details);
+    }
+}
+
+export class GatewayTimeoutError extends AppError {
+    constructor(details?: string) {
+        super("GATEWAY_TIMEOUT", details);
     }
 }
 

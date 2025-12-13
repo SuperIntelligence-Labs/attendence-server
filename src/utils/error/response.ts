@@ -17,10 +17,10 @@ export type ErrorResponse = {
 /**
  * Send standardized success response
  */
-export function success<T>(message: string, data: T): SuccessResponse {
+export function success<T>(message: string, data: T, status: number = 200): SuccessResponse {
     return {
         success: true,
-        status: 200,
+        status,
         timestamp: Date.now(),
         message,
         data,
