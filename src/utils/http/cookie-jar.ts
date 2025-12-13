@@ -20,11 +20,12 @@ export class CookieJar {
             const firstPart = parts[0];
             if (!firstPart) continue;
 
-            const keyValue = firstPart.split("=");
-            if (keyValue.length !== 2) continue;
+            const eqIndex = firstPart.indexOf("=");
+            if (eqIndex === -1) continue;
 
-            const [key, value] = keyValue;
-            if (!key || !value) continue;
+            const key = firstPart.slice(0, eqIndex).trim();
+            const value = firstPart.slice(eqIndex + 1);
+            if (!key || value === undefined) continue;
 
             const cookie: Cookie = { value };
 

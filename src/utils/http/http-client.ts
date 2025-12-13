@@ -18,14 +18,22 @@ export class HttpClient {
     }
 
     async request(url: string, options: RequestInit = {}, customHeaders?: Record<string, string>): Promise<Response> {
-        const headers = new Headers(options.headers);
+        const headers = new Headers();
 
-        // Apply default headers first
+        // 1. Apply default headers first (lowest priority)
         Object.entries(this.defaultHeaders).forEach(([key, value]) => {
             headers.set(key, value);
         });
 
-        // Then apply custom headers (they can override default headers)
+        // 2. Apply method-specific headers from options (e.g., Content-Type for POST)
+        if (options.headers) {
+            const optionHeaders = new Headers(options.headers);
+            optionHeaders.forEach((value, key) => {
+                headers.set(key, value);
+            });
+        }
+
+        // 3. Apply custom headers last (highest priority, can override everything)
         if (customHeaders) {
             Object.entries(customHeaders).forEach(([key, value]) => {
                 headers.set(key, value);
@@ -39,8 +47,9 @@ export class HttpClient {
 
         const res = await fetch(url, { ...options, headers });
 
-        const setCookie = res.headers.get("Set-Cookie");
-        if (setCookie) this.cookieJar.setCookies(setCookie);
+        // Use getSetCookie() to properly handle multiple Set-Cookie headers
+        const setCookies = res.headers.getSetCookie();
+        if (setCookies.length > 0) this.cookieJar.setCookies(setCookies);
 
         return res;
     }
