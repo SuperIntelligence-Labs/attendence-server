@@ -16,7 +16,7 @@ function validateApiError(
     response: Response,
     message: string
 ): Result<never, AppError> {
-    logger.error(`${message}: ${response.status} ${response.statusText}`);
+    logger.error(`${message}: HTTP ${response.status}`);
 
     switch (response.status) {
         case 400:
@@ -37,9 +37,7 @@ function validateApiError(
             return err(new GatewayTimeoutError("Gateway timed out while processing the request"));
         default:
             return err(
-                new InternalServerError(
-                    `Unexpected error: ${response.status} ${response.statusText}`
-                )
+                new InternalServerError(`Unexpected error: HTTP ${response.status}`)
             );
     }
 }
