@@ -1,8 +1,14 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "cf-hono-template",
+  "name": "abas-server",
   "main": "src/index.ts",
-  "compatibility_date": "2025-08-13"
+  "compatibility_date": "2025-08-13",
+  "vars": {
+    "APP_DOWNLOAD_URL": "https://example.com/proabas-app",
+    "PAYMENT_URL": "https://payment.example.com/proabas",
+    "SUPPORT_CONTACT": "@ProABASSupport",
+    "PREMIUM_PRICE": "500"
+  }
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],

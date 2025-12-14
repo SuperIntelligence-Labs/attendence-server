@@ -4,6 +4,12 @@ import {error, success} from "./response.ts";
 import logger from "../logger.ts";
 import {mapErrorToStatus} from "./error-mapper.ts";
 
+/**
+ * Converts a Result into an HTTP Response with appropriate status code.
+ * Success results return 200 with data, errors are logged and return appropriate status.
+ * @param result - The Result to convert to a Response
+ * @returns HTTP Response with JSON body
+ */
 export function handleResult<T>(result: Result<T, AppError>): Response {
     return result.match(
         (data) => {
